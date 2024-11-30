@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruta de las Ideas: Sal de la Caverna de Platón</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            margin: 10px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+        .game-instructions {
+            background-color: #e7e7e7;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .level {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .level h3 {
+            margin: 0;
+        }
+        .level p {
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>La Ruta de las Ideas: Sal de la Caverna de Platón</h1>
+        <p>¡Descubre la verdad filosófica mientras escapas de la caverna!</p>
+    </header>
+
+    <div class="content">
+        <h2>Objetivo del Juego</h2>
+        <p>Ayuda a un "filósofo" a escapar de la caverna, enfrentándose a preguntas filosóficas y tomando decisiones clave para llegar a la verdad. Progresarás a través de tres niveles filosóficos: La Ironía de Sócrates, Sombras y Realidad, y El Filósofo-Rey.</p>
+        
+        <div class="game-instructions">
+            <h2>Instrucciones del Juego</h2>
+            <p>Responde preguntas filosóficas para avanzar en los niveles. Usa la "Linterna Filosófica" para iluminar las respuestas correctas y avanzar rápidamente.</p>
+            <button class="button" id="start-button" onclick="startGame()">Comenzar Juego</button>
+        </div>
+
+        <div id="level1" class="level hidden">
+            <h3>Nivel 1: Ironía de Sócrates</h3>
+            <p>¿Qué es la virtud?</p>
+            <button class="button" onclick="checkAnswer(1, 'level1')">A. Hacer lo que se desea</button>
+            <button class="button" onclick="checkAnswer(2, 'level1')">B. El conocimiento del bien</button>
+            <button class="button" onclick="checkAnswer(3, 'level1')">C. Ser rico y poderoso</button>
+            <button class="button" onclick="checkAnswer(4, 'level1')">D. No cometer errores</button>
+        </div>
+
+        <div id="level2" class="level hidden">
+            <h3>Nivel 2: Sombras y Realidad</h3>
+            <p>¿Qué representa la sombra de un árbol?</p>
+            <button class="button" onclick="checkAnswer(1, 'level2')">A. El árbol físico en sí</button>
+            <button class="button" onclick="checkAnswer(2, 'level2')">B. La idea del árbol</button>
+            <button class="button" onclick="checkAnswer(3, 'level2')">C. La copa del árbol</button>
+            <button class="button" onclick="checkAnswer(4, 'level2')">D. Las raíces del árbol</button>
+        </div>
+
+        <div id="level3" class="level hidden">
+            <h3>Nivel 3: El Filósofo-Rey</h3>
+            <p>¿Quién debe gobernar la ciudad ideal?</p>
+            <button class="button" onclick="checkAnswer(1, 'level3')">A. El gobernante más rico</button>
+            <button class="button" onclick="checkAnswer(2, 'level3')">B. El filósofo-rey</button>
+            <button class="button" onclick="checkAnswer(3, 'level3')">C. El general del ejército</button>
+            <button class="button" onclick="checkAnswer(4, 'level3')">D. El líder religioso</button>
+        </div>
+
+        <div id="end-game" class="level hidden">
+            <h3>¡Has Escapado de la Caverna!</h3>
+            <p>"La vida no examinada no vale la pena ser vivida." – Sócrates</p>
+            <button class="button" onclick="restartGame()">Reiniciar Juego</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Creado por [Tu Nombre] - Filosofía y Juego Interactivo</p>
+    </footer>
+
+    <script>
+        let currentLevel = 1;
+
+        function startGame() {
+            // Inicia el juego y muestra el primer nivel
+            document.getElementById('start-button').classList.add('hidden');
+            document.getElementById('level1').classList.remove('hidden');
+        }
+
+        function checkAnswer(answer, level) {
+            const correctAnswers = {
+                level1: 2, // B. El conocimiento del bien
+                level2: 2, // B. La idea del árbol
+                level3: 2  // B. El filósofo-rey
+            };
+
+            // Verifica la respuesta
+            if (answer === correctAnswers[level]) {
+                // Respuesta correcta
+                alert('¡Respuesta correcta! Avanzas al siguiente nivel.');
+                nextLevel(level);
+            } else {
+                // Respuesta incorrecta
+                alert('Respuesta incorrecta. Inténtalo nuevamente.');
+            }
+        }
+
+        function nextLevel(level) {
+            // Mueve al siguiente nivel
+            document.getElementById(level).classList.add('hidden');
+            if (level === 'level1') {
+                document.getElementById('level2').classList.remove('hidden');
+            } else if (level === 'level2') {
+                document.getElementById('level3').classList.remove('hidden');
+            } else if (level === 'level3') {
+                document.getElementById('end-game').classList.remove('hidden');
+            }
+        }
+
+        function restartGame() {
+            // Reinicia el juego
+            document.location.reload();
+        }
+    </script>
+</body>
+</html>
